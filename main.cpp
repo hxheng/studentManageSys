@@ -31,11 +31,31 @@ int main() {
 			}
 			case '3': {
 				int id;
+				char ch;
+
 				cout << "请输入要修改信息学生的学号：";
 				cin >> id;
 				Student* stu = school.queryStudentByIdForModify(id);
-				if (stu!=NULL) {
-					stu->modifyStuInfo();
+				if (stu != NULL) {
+					cout << "请选择你要修改的选项：1.学号 2.姓名 3.年龄 4.成绩" << endl;
+					cin >> ch;
+					if (ch == '1') {
+						cout << "请输入新的学号：";
+						int newId;
+						cin >> newId;
+						if (newId == id) {
+							stu->setId(newId);
+						}else if (school.queryIdForAddModify(newId)) {
+							cout << "学号重复" << endl;
+							break;
+						}
+						else {
+							stu->setId(newId);
+						}
+					}
+					else {
+						stu->modifyStuInfo(ch);
+					}
 				}
 				else {
 					cout << "未查询到相关信息！" << endl;

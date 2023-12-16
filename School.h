@@ -1,6 +1,7 @@
 #include"Student.h"
 #include<vector>
 using namespace std;
+
 class School
 {
 private:
@@ -9,7 +10,14 @@ public:
 	School() {}
 	//添加学生
 	void addStudent(Student student) {
+		if (queryIdForAddModify(student.getId())) {
+			cout << "学号重复，请重新录入！" << endl;
+			return;
+		}
+
 		this->students.push_back(student);
+
+		cout << "学生信息录入成功" << endl;
 	}
 	//数据初始化
 	void initData() {
@@ -33,16 +41,23 @@ public:
 		}
 		cout << "未查询到相关信息" << endl;
 	}
+	//学号校验：不能重复
+	bool queryIdForAddModify(int id) {
+		for (int i = 0; i < students.size(); i++) {
+			if (students[i].getId() == id) {
+				return true;
+			}
+		}
+		return false;
+	}
 	//查询学生信息以修改信息：学号查询 返回学生
 	Student* queryStudentByIdForModify(int id) {
 		for (int i = 0; i < students.size(); i++) {
 			if (students[i].getId() == id) {
 				return &students[i];
 			}
-			else {
-				return NULL;
-			}
 		}
+		return NULL;
 	}
 	//删除相关学生信息
 	void deleteStudent(int id) {

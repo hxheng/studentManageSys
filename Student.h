@@ -2,6 +2,7 @@
 #include <string>
 #include<iostream>
 using namespace std;
+
 class Student {
 private:
 	//学号
@@ -22,14 +23,15 @@ public:
 	//录入学生信息
 	void inputStuInfo();
 	//修改学生信息
-	void modifyStuInfo();
+	void modifyStuInfo(char ch);
 	//打印学生信息
 	void printInfo();
 	//获取学号
 	int getId() { return id; }
 	void setName(string name) { this->name = name; }
-	void setAge(string name) { this->name = name; }
-	void setScore(string name) { this->name = name; }
+	void setAge(int age) { this->age = age; }
+	void setScore(int score) { this->score = score; }
+	void setId(int id) { this->id = id; }
 };
 void Student::inputStuInfo() {
 	int id, age, score;
@@ -51,33 +53,34 @@ void Student::inputStuInfo() {
 	this->age = age;
 	this->score = score;
 
-	cout << "学生信息录入成功" << endl;
 }
 void Student::printInfo() {
 	cout << "学号：" << this->id << "\n姓名：" << this->name << "\n年龄：" << this->age << "\n成绩：" << this->score << endl;
 };
-void Student::modifyStuInfo() {
-	cout << "请选择你要修改的选项：1.姓名 2.年龄 3.成绩" << endl;
-	char ch;
-	cin >> ch;
+void Student::modifyStuInfo(char ch) {
+	
+	
 	switch (ch) {
 	case '1': {
+		break;
+	}
+	case '2': {
 		cout << "请输入新的姓名：";
 		string name;
 		cin >> name;
 		this->setName(name);
 		break;
 	}
-	case '2': {
+	case '3': {
 		cout << "请输入新的年龄：";
-		string age;
+		int age;
 		cin >> age;
 		this->setAge(age);
 		break;
 	}
-	case '3': {
+	case '4': {
 		cout << "请输入新的成绩：";
-		string score;
+		int score;
 		cin >> score;
 		this->setScore(score);
 		break;
